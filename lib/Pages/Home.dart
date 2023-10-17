@@ -13,8 +13,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
-
   // Take reference of the hive box
   final mybox = Hive.box("taskBox");
   TodoDatabase db = TodoDatabase();
@@ -29,7 +27,6 @@ class _HomepageState extends State<Homepage> {
     } else {
       db.loadData();
     }
-
   }
 
   //what's gonna happen when Check box Tapped
@@ -83,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        if(newtaskcontroller.text.isNotEmpty){
+                        if (newtaskcontroller.text.isNotEmpty) {
                           db.todoList.add([newtaskcontroller.text, false]);
                           newtaskcontroller.clear();
                           Navigator.of(context).pop();
@@ -192,14 +189,16 @@ class _HomepageState extends State<Homepage> {
                       activeColor: Colors.black87,
                     ),
                     // Task Name
-                    Text(
-                      db.todoList[index][0],
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        decoration: db.todoList[index][1] == true
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
+                    Expanded(
+                      child: Text(
+                        db.todoList[index][0],
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          decoration: db.todoList[index][1] == true
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                        ),
                       ),
                     ),
                   ],
